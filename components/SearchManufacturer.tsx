@@ -2,7 +2,7 @@
 
 import { SearchManufacturerProps } from "@/types";
 import { Combobox, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/20/solid";
+
 import Image from "next/image";
 import { Fragment, useState } from "react";
 import { manufacturers } from "@/constants";
@@ -26,7 +26,10 @@ const SearchManufacturer = ({
     <div className="search-manufacturer">
       <Combobox value={manufacturer} onChange={setManufacturer}>
         <div className="relative w-full">
-          <Combobox.Button className="abolute top-[140px]">
+          <Combobox.Button
+            className="abolute top-[14px
+          ]"
+          >
             <Image
               src="/car-logo.svg"
               width={20}
@@ -36,7 +39,7 @@ const SearchManufacturer = ({
             />
           </Combobox.Button>
           <Combobox.Input
-            className="search-manufacturer__Input"
+            className="search-manufacturer__input"
             placeholder="Volkswagen"
             displayValue={(manufacturer: string) => manufacturer}
             onChange={(e) => setQuery(e.target.value)}
@@ -45,7 +48,7 @@ const SearchManufacturer = ({
             as={Fragment}
             leave="transition ease-in durarion-100"
             leaveFrom="opacity-100"
-            LeaveTo="opacity-0"
+            leaveTo="opacity-0"
             afterLeave={() => setQuery("")}
           >
             <Combobox.Options>
@@ -70,16 +73,20 @@ const SearchManufacturer = ({
                   >
                     {({ selected, active }) => (
                       <>
-                        <li
-                          className={`${
-                            active
-                              ? "bg-blue-500 text-white"
-                              : "bg-white text-black"
+                        <span
+                          className={`block truncate ${
+                            selected ? "font-medium" : "font-normal"
                           }`}
                         >
-                          {selected && <CheckIcon />}
                           {item}
-                        </li>
+                        </span>
+                        {selected ? (
+                          <span
+                            className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
+                              active ? "text-white" : "text-teal-600"
+                            }`}
+                          ></span>
+                        ) : null}
                       </>
                     )}
                     {/* {item} */}
